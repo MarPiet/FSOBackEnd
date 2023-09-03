@@ -6,13 +6,17 @@
   "scripts": {
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build:ui": "@powershell if(Test-Path build){Remove-Item -Recurse -Force build} && cd ../part2ex2.6_phonebook && npm run build && @powershell Copy-Item build -Recurse ../part3ex3.1_phonebook_backend",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push origin main"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "mongoose": "^7.4.3",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
